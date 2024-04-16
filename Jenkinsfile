@@ -16,7 +16,7 @@ pipeline {
 		}
 		stage ("Create docker image"){
 			steps {
-				sh 'sudo docker build --tag java-app:$BUILD_TAG_$BUILD_NAME .'
+				sh 'sudo docker build -t java-app:$BUILD_TAG .'
 				sh 'sudo docker tag java-app:$BUILD_TAG ayushigupta1496/java-app:$BUILD_TAG'
 			}
 		}
