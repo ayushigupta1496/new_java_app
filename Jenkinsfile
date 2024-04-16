@@ -16,8 +16,8 @@ pipeline {
 		}
 		stage ("Create docker image"){
 			steps {
-				sh 'sudo docker build -t java-repo:$BUILD_TAG_$BUILD_NAME .'
-				sh 'sudo docker tag java-repo:$BUILD_TAG ayushigupta1496/java-app:$BUILD_TAG'
+				sh 'sudo docker build -t java-app:$BUILD_TAG_$BUILD_NAME .'
+				sh 'sudo docker tag java-app:$BUILD_TAG ayushigupta1496/java-app:$BUILD_TAG'
 			}
 		}
 		stage ("Push on Docker-Hub"){
@@ -26,11 +26,6 @@ pipeline {
 					sh 'sudo docker login -u ayushigupta1496 -p ${docker_hub_pass_var}'
 					sh 'sudo docker push  ayushigupta1496/java-app:$BUILD_TAG' 		
 				}
-			}
-		}
-		stage ("Testing the Build"){
-			steps {
-				sh 'sudo docker run -dit --name java-test$BUILD_TAG -p 8080:8080  ayushigupta1496/java-app:$BUILD_TAG'
 			}
 		}
 		
