@@ -23,14 +23,14 @@ pipeline {
 		stage ("Push on Docker-Hub"){
 			steps {
 				withCredentials([string(credentialsId: 'Docker_pass_ID', variable: 'docker_hub_pass_var')]) {
-					sh 'sudo docker login -u ayushigupta1496@gmail.com -p ${docker_hub_pass_var}'
-					sh 'sudo docker push  ayushigupta1496@gmail.com/java-app:$BUILD_TAG' 		
+					sh 'sudo docker login -u ayushigupta1496 -p ${docker_hub_pass_var}'
+					sh 'sudo docker push  ayushigupta1496/java-app:$BUILD_TAG' 		
 				}
 			}
 		}
 		stage ("Testing the Build"){
 			steps {
-				sh 'sudo docker run -dit --name java-test$BUILD_TAG -p 8080:8080  ayushigupta1496@gmail.com/java-app:$BUILD_TAG'
+				sh 'sudo docker run -dit --name java-test$BUILD_TAG -p 8080:8080  ayushigupta1496/java-app:$BUILD_TAG'
 			}
 		}
 		
