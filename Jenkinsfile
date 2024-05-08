@@ -33,5 +33,22 @@ pipeline {
 					sh 'sudo docker run -dit --name java-test -p 8081:8080 java-app:$BUILD_TAG'
 				}
 			}
-	}	
-}	
+	
+stage ("QAT Testing"){
+			steps {
+				retry(5) {
+					script {
+						sh 'sudo curl --silent http://43.205.229.239:8080/java-web-app/ | grep -i -E "(india|sr)"'
+					}
+				}
+			}
+		}
+		stage ("Approval from QAT"){
+			steps {
+				script {
+					Boolean userInput = input(id: 'Proceed1', message: 'Do you want to Promote this build?', parameters: [[$class: 'BooleanParameterDefinition', defaultValue: true, description: '', name: 'Please confirm you agree with this']])
+                				echo 'userInput: ' + userInput
+				}
+			}
+		}
+		}
