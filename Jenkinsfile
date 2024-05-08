@@ -30,7 +30,7 @@ pipeline {
 		}
 		stage (" Testing the pipeline" ){
 				steps {
-					sh 'sudo docker run -dit --name java-test -p 8080:8080 java-app:$BUILD_TAG'
+					sh 'sudo docker run -dit --name java-test -p 8081:8080 java-app:$BUILD_TAG'
 				}
 			}
 	}	
