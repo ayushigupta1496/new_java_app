@@ -38,7 +38,7 @@ stage ("QAT Testing"){
 			steps {
 				retry(5) {
 					script {
-						sh 'sudo curl --silent http://65.2.150.137:8083/java-web-app/ | grep -i -E "(india|sr)"'
+						sh 'sudo curl --silent http://13.234.34.129:8083/java-web-app/ | grep -i -E "(india|sr)"'
 					}
 				}
 			}
