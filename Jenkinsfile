@@ -51,5 +51,12 @@ stage ("QAT Testing"){
 				}
 			}
 		}
-		}
-		}
+		stage("Deployment"){
+		      steps{
+		           script{
+			        kubernetesDeploy (configs: 'deploymentservice.yaml',kubeconfigId: 'kubernetesConfigKey')
+				}
+				}
+				}
+				}
+				}
