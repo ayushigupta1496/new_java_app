@@ -54,7 +54,7 @@ stage ("QAT Testing"){
 		stage("Deployment"){
 		      steps{
 		           script{
-			        kubernetesDeploy configs: '', kubeConfig: [path: 'deploymentservice.yaml'], kubeconfigId: 'kubernetesconfigkey'
+			        kubernetesDeploy configs: '', kubeConfig: [path: 'https://github.com/ayushigupta1496/new_java_app.git/deploymentservice.yaml'], kubeconfigId: 'kubernetesconfigkey'
 				}
 				}
 				}
