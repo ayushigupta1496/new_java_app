@@ -38,7 +38,7 @@ stage ("QAT Testing"){
 			steps {
 				retry(5) {
 					script {
-						sh 'sudo curl --silent http://13.233.127.219:8083/java-web-app/ | grep -i -E "(india|sr)"'
+						sh 'sudo curl --silent http://13.201.41.138:8083/java-web-app/ | grep -i -E "(india|sr)"'
 					}
 				}
 			}
@@ -53,6 +53,7 @@ stage ("QAT Testing"){
 		}
 		stage("Deployment"){
 		      steps{
+		           sshagent(credentials:['ssh-cred'])
 		           script{
 			        kubernetesDeploy (configs: 'deploymentservice.yaml', kubeConfig:'kubernetesconfigkey') 
 				}
