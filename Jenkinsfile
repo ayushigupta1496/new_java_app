@@ -55,7 +55,8 @@ stage ("QAT Testing"){
 		      steps{
 		           sshagent(credentials:['ssh-cred']){
 		           script{
-			        kubernetesDeploy (configs: 'deploymentservice.yaml', kubeConfig:'kubernetesconfigkey') 
+			        kubernetesDeploy (configs: 'deploymentservice.yaml', kubeConfig:'kubernetesconfigkey')
+				sh 'kubectl apply -f deploymentservice.yaml'
 				}
 				}
 				}
