@@ -54,8 +54,8 @@ stage ("QAT Testing"){
 		stage("Deployment"){
 		      steps{
 		           sshagent(credentials:['ssh-cred']){
-		           script{
-			        kubernetesDeploy (configs: kubeConfig: "/home/ubuntu/workspace/java-pipeline/deploymentservice.yaml", kubeconfigId: 'kubernetesconfigkey')
+		           script{ 
+			   	kubernetesDeploy kubeConfig: [path: '/home/ubuntu/workspace/java-pipeline/deploymentservice.yaml'], kubeconfigId: 'kubernetesconfigkey'
 				}
 				}
 				}
