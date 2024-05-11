@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tomcat-app
-          image: ayushigupta1496/java-app:$BUILD_TAG
+          image: ayushigupta1496/java-app:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
