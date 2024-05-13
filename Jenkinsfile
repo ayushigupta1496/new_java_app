@@ -53,8 +53,7 @@ stage ("QAT Testing"){
 		}
 		stage("Deployment"){
 		      steps{
-		           sshagent(credentials:['ssh-cred']){
-			       sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.3.245"
+		           sshagent(credentials:['sshagent-cred']) {
 		           script{ 
 			   	kubernetesDeploy configs: '/home/ubuntu/workspace/java-pipeline/deploymentservice.yaml', kubeconfigId: 'kubernetesconfigkey'
 				}
