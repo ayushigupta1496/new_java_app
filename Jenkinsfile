@@ -55,6 +55,7 @@ stage ("QAT Testing"){
 		      steps{{ 
 		           script{ 
 			   	kubernetesDeploy configs: '/home/ubuntu/workspace/java-pipeline/deploymentservice.yaml', kubeconfigId: 'kubernetesconfigkey'
+				sh 'kubectl apply -f deploymentservice.yaml'
 				}
 				}
 				}
