@@ -52,10 +52,12 @@ stage ("QAT Testing"){
 			}
 		}
 		stage("Deployment"){
-		      steps{ 
+		      steps{
+		      sshagent(credentials:['sshcred']) {
+			    	 	sh "ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.105 sudo kubectl apply -f deploymentservice.yaml"
 		           script{ 
 			   	kubernetesDeploy configs: '/home/ubuntu/workspace/java-pipeline/deploymentservice.yaml', kubeconfigId: 'kubernetesconfigkey'
-				sh 'kubectl apply -f deploymentservice.yaml'
+				}
 				}
 				}
 				}
