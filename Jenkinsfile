@@ -38,7 +38,7 @@ stage ("QAT Testing"){
 			steps {
 				retry(5) {
 					script {
-						sh 'sudo curl --silent http://13.127.111.200:8083/java-web-app/ | grep -i -E "(india|sr)"'
+						sh 'sudo curl --silent http://3.110.190.105:8083/java-web-app/ | grep -i -E "(india|sr)"'
 					}
 				}
 			}
@@ -54,7 +54,7 @@ stage ("QAT Testing"){
 		stage("Deployment"){
 		      steps{
 		      sshagent(credentials:['ssh-cred']) {
-			    	 	sh "ssh -o StrictHostKeyChecking=no ubuntu@3.108.54.105 sudo kubectl apply -f deploymentservice.yaml"
+			    	 	sh "ssh -o StrictHostKeyChecking=no ubuntu@3.110.123.166 sudo kubectl apply -f deploymentservice.yaml"
 		           script{ 
 			   	kubernetesDeploy configs: '/home/ubuntu/workspace/java-pipeline/deploymentservice.yaml', kubeconfigId: 'kubernetesconfigkey'
 				}
