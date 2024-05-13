@@ -56,7 +56,7 @@ stage ("QAT Testing"){
         sshagent(credentials: ['ssh-cred']) {
             sh 'scp -r -o StrictHostKeyChecking=no /home/ubuntu/workspace/java-pipeline/deploymentservice.yaml ubuntu@3.110.123.166'
             script {
-                    sh 'ssh ubuntu@3.110.123.166 kubectl apply -f deploymentservice.yaml --kubeconfig=~/.kube/config'
+                    sh 'ssh ubuntu@3.110.123.166 kubectl apply -f deploymentservice.yaml'
                 }
                 
 
