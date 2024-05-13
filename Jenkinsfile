@@ -52,13 +52,16 @@ stage ("QAT Testing"){
 			}
 		}
 		stage("Deployment"){
-		      steps{
-withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'k8s', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.3.245:6443') {
-    sh 'kubectl apply -f /home/ubuntu/workspace/java-pipeline/deploymentservice.yaml'
-}
+                      steps{
+                      sshagent(credentials:['ssh-cred']) {
+                                        sh "ssh -o StrictHostKeyChecking=no ubuntu@3.110.123.166"
+                           script{
+                                kubernetesDeploy configs: '/home/ubuntu/workspace/java-pipeline/deploymentservice.yaml', kubeconfigId: 'kubernetesconfigkey'
+                                }
+                                }
+                                }
+                                }
+                                }
 				}
-				}
-				}
-			}	
 				
 				
