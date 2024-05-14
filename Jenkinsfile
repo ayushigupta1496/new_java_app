@@ -54,7 +54,9 @@ stage ("QAT Testing"){
 		stage('Deploy to K8s') {
     steps {
         sshagent(credentials: ['ssh-cred']) {
-            sh 'scp -r -o StrictHostKeyChecking=no https://github.com/ayushigupta1496/new_java_app/deploymentservice.yaml ubuntu@3.108.215.162'
+	git branch: 'main', url: 'https://github.com/ayushigupta1496/new_java_app.git'
+
+            sh 'scp -r -o StrictHostKeyChecking=no deploymentservice.yaml ubuntu@3.108.215.162:/home/ubuntu/'
             script {
                     sh 'ssh ubuntu@3.108.215.162 kubectl apply -f deploymentservice.yaml'
                 }
