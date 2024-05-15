@@ -38,7 +38,7 @@ stage ("QAT Testing"){
 			steps {
 				retry(5) {
 					script {
-						sh 'sudo curl --silent http://13.233.224.99:8083/java-web-app/ | grep -i -E "(india|sr)"'
+						sh 'sudo curl --silent http://3.110.81.189:8083/java-web-app/ | grep -i -E "(india|sr)"'
 					}
 				}
 			}
@@ -56,7 +56,7 @@ stage ("QAT Testing"){
         sshagent(credentials: ['ssh-cred']) {
 	git branch: 'main', url: 'https://github.com/ayushigupta1496/new_java_app.git'
 
-            sh 'scp -r -o StrictHostKeyChecking=no deploymentservice.yaml ubuntu@3.108.215.162:/home/ubuntu/'
+            sh 'scp -r -o StrictHostKeyChecking=no deploymentservice.yaml ubuntu@43.204.216.136:/home/ubuntu/'
             script {
                     sh 'ssh ubuntu@3.108.215.162 kubectl apply -f deploymentservice.yaml'
                 }
