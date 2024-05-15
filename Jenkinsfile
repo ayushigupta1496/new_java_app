@@ -58,7 +58,7 @@ stage ("QAT Testing"){
 
             sh 'scp -r -o StrictHostKeyChecking=no deploymentservice.yaml ubuntu@43.204.216.136:/home/ubuntu/'
             script {
-                    sh 'ssh ubuntu@3.108.215.162 kubectl apply -f deploymentservice.yaml'
+                    sh 'ssh ubuntu@43.204.216.136 kubectl apply -f deploymentservice.yaml'
                 }
 
 
